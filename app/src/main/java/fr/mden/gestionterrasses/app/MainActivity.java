@@ -51,6 +51,17 @@ public class MainActivity extends Activity
         // | OPTION DES ELEMENTS DANS LA LISTE DES EMPLACEMENTS |
         // +----------------------------------------------------+
 
+        // Clic court : Accès à la fiche de l'emplacement
+        this.listeEmplacements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // On affiche la fiche présentant les infos de l'emplacement
+                Intent affichageEmplacement = new Intent(MainActivity.this, AffichageEmplacementActivity.class);
+                startActivity(affichageEmplacement);
+            }
+        });
+
+        // Clic long : Accès aux options via une popup
         this.listeEmplacements.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,17 +99,17 @@ public class MainActivity extends Activity
 
         // Récupération des données (entrées manuelles pour le moment)
         String[][] infosEmplacements = new String[][]{
-                {"Ligne 1", "Infos 1"},
-                {"Ligne 2", "Infos 2"},
-                {"Ligne 3", "Infos 3"},
-                {"Ligne 4", "Infos 4"},
-                {"Ligne 5", "Infos 5"},
-                {"Ligne 6", "Infos 6"},
-                {"Ligne 7", "Infos 7"},
-                {"Ligne 8", "Infos 8"},
-                {"Ligne 9", "Infos 9"},
-                {"Ligne 10", "Infos 10"},
-                {"Ligne 11", "Infos 11"}};
+                {"1", "Ligne 1", "Infos 1"},
+                {"2", "Ligne 2", "Infos 2"},
+                {"3", "Ligne 3", "Infos 3"},
+                {"4", "Ligne 4", "Infos 4"},
+                {"5", "Ligne 5", "Infos 5"},
+                {"6", "Ligne 6", "Infos 6"},
+                {"7", "Ligne 7", "Infos 7"},
+                {"8", "Ligne 8", "Infos 8"},
+                {"9", "Ligne 9", "Infos 9"},
+                {"10", "Ligne 10", "Infos 10"},
+                {"11", "Ligne 11", "Infos 11"}};
 
         // Liste des associations "Première ligne/seconde ligne
         List<HashMap<String, String>> lesEmplacements = new ArrayList<HashMap<String, String>>();
@@ -110,8 +121,8 @@ public class MainActivity extends Activity
         for(int i = 0; i < infosEmplacements.length; i++)
         {
             element = new HashMap<String, String>();
-            element.put("text1", infosEmplacements[i][0]);
-            element.put("text2", infosEmplacements[i][1]);
+            element.put("text1", infosEmplacements[i][1]);
+            element.put("text2", infosEmplacements[i][2]);
             lesEmplacements.add(element);
         }
 

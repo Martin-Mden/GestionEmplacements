@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Général -->
-    <string name="app_name">Gestion Terrasses</string>
+    <string name="app_name">Gestion Emplacements</string>
 
     <!-- Bar d'actions / Menu d'option -->
     <string name="action_ajouter">Ajouter un emplacement</string>
@@ -20,7 +20,14 @@
     <string name="action_valider_ajout">Ajouter</string>
     <string name="action_annuler_ajout">Annuler</string>
 
+    <!-- Activité "AffichageEmplacementActivity" -->
+    <string name="texte_infos_emplacement">Emplacement</string>
+    <string name="action_modifier_emplacement">Modifier l\'emplacement</string>
+    <string name="action_supprimer_emplacement">Supprimer l\'emplacement</string>
+
     <!-- Activité "Parametres" -->
     <string name="action_sauvegarder_modifications">Sauvegarder</string>
     <string name="action_annuler_modifications">Annuler</string>
+    <string name="title_activity_affichage_emplacement">Emplacement</string>
+
 </resources>
