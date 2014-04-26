@@ -111,9 +111,6 @@
       <Port>5050</Port>
     </configuration>
   </component>
-  <component name="SvnConfiguration">
-    <configuration>C:\Users\Martin\AppData\Roaming\Subversion</configuration>
-  </component>
   <component name="masterDetails">
     <states>
       <state key="GlobalLibrariesConfigurable.UI">

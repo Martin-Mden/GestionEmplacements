@@ -2,8 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="fr.mden.gestionterrasses.app.MainActivity" >
+    <item android:title="Ajouter un emplacement"
+        android:icon="@drawable/ic_action_ajouter"
+        android:showAsAction="always"/>
     <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:title="Paramètres"
+        android:icon="@drawable/ic_action_settings"
+        android:showAsAction="never"/>
+    <item android:title="Quitter"
+        android:showAsAction="never"/>
 </menu>
