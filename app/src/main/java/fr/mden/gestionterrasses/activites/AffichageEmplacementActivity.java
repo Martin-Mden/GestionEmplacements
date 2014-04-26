@@ -1,9 +1,11 @@
-package fr.mden.gestionterrasses.app;
+package fr.mden.gestionterrasses.activites;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import fr.mden.gestionterrasses.app.R;
 
 
 public class AffichageEmplacementActivity extends Activity

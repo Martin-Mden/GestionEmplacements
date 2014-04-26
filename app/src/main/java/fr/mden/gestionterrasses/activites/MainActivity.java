@@ -1,4 +1,4 @@
-package fr.mden.gestionterrasses.app;
+package fr.mden.gestionterrasses.activites;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +17,8 @@ import android.widget.SimpleAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import fr.mden.gestionterrasses.app.R;
 
 public class MainActivity extends Activity
 {

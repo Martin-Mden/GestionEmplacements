@@ -1,11 +1,11 @@
-package fr.mden.gestionterrasses.app;
+package fr.mden.gestionterrasses.activites;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import fr.mden.gestionterrasses.app.R;
 
 
 public class AjoutEmplacementActivity extends Activity

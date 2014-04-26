@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="fr.mden.gestionterrasses.app.MainActivity"
+            android:name="fr.mden.gestionterrasses.activites.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,25 +17,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fr.mden.gestionterrasses.app.ParametresActivity"
+            android:name="fr.mden.gestionterrasses.activites.ParametresActivity"
             android:label="@string/title_activity_parametres"
-            android:parentActivityName="fr.mden.gestionterrasses.app.MainActivity" >
+            android:parentActivityName="fr.mden.gestionterrasses.activites.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name="fr.mden.gestionterrasses.app.AjoutEmplacementActivity"
+            android:name="fr.mden.gestionterrasses.activites.AjoutEmplacementActivity"
             android:label="@string/title_activity_ajout_emplacement"
-            android:parentActivityName="fr.mden.gestionterrasses.app.MainActivity" >
+            android:parentActivityName="fr.mden.gestionterrasses.activites.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name=".AffichageEmplacementActivity"
+            android:name="fr.mden.gestionterrasses.activites.AffichageEmplacementActivity"
             android:label="@string/title_activity_affichage_emplacement"
-            android:parentActivityName="fr.mden.gestionterrasses.app.MainActivity" >
+            android:parentActivityName="fr.mden.gestionterrasses.activites.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
