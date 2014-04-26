@@ -22,8 +22,14 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Test ListView
+        // +------------------------------------------+
+        // | REMPLISSAGE DE LA LISTE DES EMPLACEMENTS |
+        // +------------------------------------------+
+
+        // On récupère l'élément ListView de l'activité pour pouvoir travailler avec
         ListView listeEmplacements = (ListView) findViewById(R.id.liste_emplacements);
+
+        // Récupération des données (entrées manuelles pour le moment)
         String[][] infosEmplacements = new String[][]{
                 {"Ligne 1", "Infos 1"},
                 {"Ligne 2", "Infos 2"},
@@ -37,8 +43,13 @@ public class MainActivity extends Activity
                 {"Ligne 10", "Infos 10"},
                 {"Ligne 11", "Infos 11"}};
 
+        // Liste des associations "Première ligne/seconde ligne
         List<HashMap<String, String>> lesEmplacements = new ArrayList<HashMap<String, String>>();
+
+        // Élément en cours de traitement
         HashMap<String, String> element;
+
+        // Pour chaque emplacement trouvé, on défini l'élément (association des infos) et on l'ajoute à la liste.
         for(int i = 0; i < infosEmplacements.length; i++)
         {
             element = new HashMap<String, String>();
@@ -47,8 +58,10 @@ public class MainActivity extends Activity
             lesEmplacements.add(element);
         }
 
+        // Création de l'adapter avec toutes les données au dessus
         ListAdapter adapter = new SimpleAdapter(this, lesEmplacements, android.R.layout.simple_list_item_2, new String[]{"text1", "text2"}, new int[]{android.R.id.text1, android.R.id.text2});
 
+        // On lit l'adapter à la liste des emplacements
         listeEmplacements.setAdapter(adapter);
     }
 
@@ -64,24 +77,27 @@ public class MainActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Récupération de l'id de l'élément sélectionné
         int id = item.getItemId();
+
+        // En fonction de l'ID, on applique les actions spécifiques
         switch (id)
         {
+            // Action pour ajouter un emplacement
             case R.id.action_ajouter:
                 Intent ajoutEmplacement = new Intent(MainActivity.this, AjoutEmplacementActivity.class);
                 startActivity(ajoutEmplacement);
                 break;
 
+            // Action pour accéder à la liste des paramètres de l'application
             case R.id.action_parametres:
                 Intent parametres = new Intent(MainActivity.this, ParametresActivity.class);
                 startActivity(parametres);
                 break;
 
+            // Action pour quitter l'application
             case R.id.action_quitter:
-                finish();
+                System.exit(0); // Ferme complétement l'activité et l'application
                 break;
         }
 

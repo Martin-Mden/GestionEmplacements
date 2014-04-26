@@ -6,35 +6,37 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ParametresActivity extends Activity {
-
+public class ParametresActivity extends Activity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.parametres, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // Récupération de l'id de l'élément sélectionné
         int id = item.getItemId();
 
+        // En fonction de l'ID, on applique les actions spécifiques
         switch (id)
         {
+            // Action pour sauvegarder les modifications effectuées dans les paramètres
             case R.id.action_sauvegarder_modifications:
                 finish();
                 break;
 
+            // Action pour annuler les modifications effectuées dans les paramètres
             case R.id.action_annuler_modifications:
                 finish();
                 break;
