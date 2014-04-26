@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Général -->
     <string name="app_name">Gestion Terrasses</string>
-    <string name="action_settings">Options</string>
 
+    <!-- Bar d'actions / Menu d'option -->
+    <string name="action_ajouter">Ajouter un emplacement</string>
+    <string name="action_parametres">Paramètres</string>
+    <string name="action_quitter">Quitter</string>
+    <string name="title_activity_parametres">Paramètres</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_ajout_emplacement">Ajouter un emplacement</string>
+
+    <!-- Activité "Main" -->
+    <string name="bouton_ajouter">Ajouter un emplacement</string>
+
+    <!-- Activité "AjoutEmplacement" -->
+    <string name="action_valider_ajout">Ajouter</string>
+    <string name="action_annuler_ajout">Annuler</string>
+
+    <!-- Activité "Parametres" -->
+    <string name="action_sauvegarder_modifications">Sauvegarder</string>
+    <string name="action_annuler_modifications">Annuler</string>
 </resources>

@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="fr.mden.gestionterrasses.app.ParametresActivity" >
+
+    <!-- SAUVEGARDER MODIFICATIONS -->
+    <item android:id="@id/action_sauvegarder_modifications"
+        android:title="@string/action_sauvegarder_modifications"
+        android:icon="@drawable/ic_action_save"
+        android:showAsAction="always"/>
+
+    <!-- ANNULER MODIFICATIONS -->
+    <item android:id="@id/action_annuler_modifications"
+        android:title="@string/action_annuler_modifications"
+        android:icon="@drawable/ic_action_cancel"
+        android:showAsAction="always"/>
+
+</menu>

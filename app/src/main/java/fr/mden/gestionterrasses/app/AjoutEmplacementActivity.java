@@ -3,48 +3,41 @@ package fr.mden.gestionterrasses.app;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity
-{
+public class AjoutEmplacementActivity extends Activity {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ajout_emplacement);
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.ajout_emplacement, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         switch (id)
         {
-            case R.id.action_ajouter:
-                Intent ajoutEmplacement = new Intent(MainActivity.this, AjoutEmplacementActivity.class);
-                startActivity(ajoutEmplacement);
+            case R.id.action_valider_ajout:
+                finish();
                 break;
 
-            case R.id.action_parametres:
-                Intent parametres = new Intent(MainActivity.this, ParametresActivity.class);
-                startActivity(parametres);
-                break;
-
-            case R.id.action_quitter:
+            case R.id.action_annuler_ajout:
                 finish();
                 break;
         }

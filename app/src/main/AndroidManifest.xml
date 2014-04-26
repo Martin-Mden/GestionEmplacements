@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="fr.mden.gestionterrasses.app.ParametresActivity"
+            android:label="@string/title_activity_parametres"
+            android:parentActivityName="fr.mden.gestionterrasses.app.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
+        <activity
+            android:name="fr.mden.gestionterrasses.app.AjoutEmplacementActivity"
+            android:label="@string/title_activity_ajout_emplacement"
+            android:parentActivityName="fr.mden.gestionterrasses.app.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
     </application>
 
 </manifest>
