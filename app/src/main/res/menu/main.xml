@@ -4,19 +4,19 @@
     tools:context="fr.mden.gestionterrasses.activites.MainActivity" >
 
     <!-- AJOUT EMPLACEMENT -->
-    <item android:id="@id/action_ajouter"
+    <item android:id="@+id/action_ajouter"
         android:title="@string/action_ajouter"
         android:icon="@drawable/ic_action_ajouter"
         android:showAsAction="always"/>
 
     <!-- PARAMETRES -->
-    <item android:id="@id/action_parametres"
+    <item android:id="@+id/action_parametres"
         android:title="@string/action_parametres"
         android:icon="@drawable/ic_action_settings"
         android:showAsAction="never"/>
 
     <!-- QUITTER -->
-    <item android:id="@id/action_quitter"
+    <item android:id="@+id/action_quitter"
         android:title="@string/action_quitter"
         android:showAsAction="never"/>
 

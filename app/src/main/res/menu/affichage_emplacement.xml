@@ -4,13 +4,13 @@
     tools:context="fr.mden.gestionterrasses.activites.AffichageEmplacementActivity" >
 
     <!-- MODIFIER EMPLACEMENT -->
-    <item android:id="@id/action_modifier_emplacement"
+    <item android:id="@+id/action_modifier_emplacement"
         android:title="@string/action_modifier_emplacement"
         android:icon="@drawable/ic_action_edit"
         android:showAsAction="always"/>
 
     <!-- SUPPRIMER EMPLACEMENT -->
-    <item android:id="@id/action_supprimer_emplacement"
+    <item android:id="@+id/action_supprimer_emplacement"
         android:title="@string/action_supprimer_emplacement"
         android:icon="@drawable/ic_action_discard"
         android:showAsAction="always"/>

@@ -1,16 +1,166 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="fr.mden.gestionterrasses.activites.AjoutEmplacementActivity">
 
-    <TextView
-        android:text="@string/action_ajouter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@drawable/bordure_liste_emplacements"
+        android:gravity="center"
+        android:padding="5sp"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Coordonnées :"
+            android:paddingRight="10sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text=" ( " />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="3"
+            android:id="@+id/coordX"
+            android:maxLength="4"
+            android:nextFocusLeft="@+id/coordY"
+            android:hint="   X "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text=";" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="3"
+            android:id="@+id/coordY"
+            android:maxLength="4"
+            android:nextFocusForward="@+id/rue1"
+            android:hint="   Y "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text=" ) " />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="20sp"
+        android:text="Informations sur l'emplacement : " />
+
+    <EditText
+        android:id="@+id/rue1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:hint="Nom de la rue"
+        android:layout_marginTop="10sp"
+        android:nextFocusForward="@+id/rue2"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/rue2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:hint="Rue adjacente ?"
+        android:layout_marginTop="10sp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/ville"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Ville"
+        android:layout_marginTop="10sp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/superficie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Superficie (en m²)"
+        android:layout_marginTop="10sp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/nbPlacesParking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Nombre de places de parking"
+        android:layout_marginTop="10sp"
+        android:ems="10" />
+
+    <LinearLayout
+        android:layout_marginTop="30sp"
+        android:gravity="center"
+        android:padding="5sp"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:ems="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vider"
+            android:id="@+id/bouton_vider" />
+
+        <Button
+            android:ems="5"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Ajouter"
+            android:id="@+id/bouton_ajouter" />
+
+        <Button
+            android:ems="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Annuler"
+            android:id="@+id/bouton_annuler" />
+
+    </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+

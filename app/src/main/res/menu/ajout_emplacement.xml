@@ -4,13 +4,13 @@
     tools:context="fr.mden.gestionterrasses.activites.AjoutEmplacementActivity" >
 
     <!-- VALIDER AJOUT -->
-    <item android:id="@id/action_valider_ajout"
+    <item android:id="@+id/action_valider_ajout"
         android:title="@string/action_valider_ajout"
         android:icon="@drawable/ic_action_accept"
         android:showAsAction="always"/>
 
     <!-- ANNULER AJOUT -->
-    <item android:id="@id/action_annuler_ajout"
+    <item android:id="@+id/action_annuler_ajout"
         android:title="@string/action_annuler_ajout"
         android:icon="@drawable/ic_action_cancel"
         android:showAsAction="always"/>

@@ -1,26 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ACTION BAR -->
-    <item name="action_ajouter" type="id"/>
-    <item name="action_parametres" type="id"/>
-    <item name="action_quitter" type="id"/>
-
-    <item name="action_valider_ajout"  type="id"/>
-    <item name="action_annuler_ajout"  type="id"/>
-
-    <item name="action_sauvegarder_modifications"  type="id"/>
-    <item name="action_annuler_modifications"  type="id"/>
-
-    <item name="action_modifier_emplacement" type="id"/>
-    <item name="action_supprimer_emplacement" type="id"/>
-
-    <!-- Activité "Main" -->
-    <item name="liste_emplacements" type="id"/>
-    <item name="bouton_ajouter_emplacement" type="id"/>
-
-    <!-- Activité "AffichageEmplacementActivity" -->
-    <item name="texte_infos_emplacement" type="id"/>
-
-
 </resources>

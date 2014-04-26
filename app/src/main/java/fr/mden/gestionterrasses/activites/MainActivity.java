@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import fr.mden.gestionterrasses.app.R;
+import fr.mden.gestionterrasses.metier.Emplacement;
+import fr.mden.gestionterrasses.metier.EmplacementDAO;
 
 public class MainActivity extends Activity
 {
@@ -99,8 +101,13 @@ public class MainActivity extends Activity
         // | REMPLISSAGE DE LA LISTE DES EMPLACEMENTS |
         // +------------------------------------------+
 
+        EmplacementDAO emplacementDAO = new EmplacementDAO(this.getApplicationContext());
+        emplacementDAO.open();
+        
+        List<Emplacement> listeDesEmplacements = emplacementDAO.tousLesEmplacements();
+
         // Récupération des données (entrées manuelles pour le moment)
-        String[][] infosEmplacements = new String[][]{
+        /*String[][] infosEmplacements = new String[][]{
                 {"1", "Ligne 1", "Infos 1"},
                 {"2", "Ligne 2", "Infos 2"},
                 {"3", "Ligne 3", "Infos 3"},
@@ -111,7 +118,7 @@ public class MainActivity extends Activity
                 {"8", "Ligne 8", "Infos 8"},
                 {"9", "Ligne 9", "Infos 9"},
                 {"10", "Ligne 10", "Infos 10"},
-                {"11", "Ligne 11", "Infos 11"}};
+                {"11", "Ligne 11", "Infos 11"}};*/
 
         // Liste des associations "Première ligne/seconde ligne
         List<HashMap<String, String>> lesEmplacements = new ArrayList<HashMap<String, String>>();
@@ -120,11 +127,11 @@ public class MainActivity extends Activity
         HashMap<String, String> element;
 
         // Pour chaque emplacement trouvé, on défini l'élément (association des infos) et on l'ajoute à la liste.
-        for(int i = 0; i < infosEmplacements.length; i++)
+        for(Emplacement e : listeDesEmplacements)
         {
             element = new HashMap<String, String>();
-            element.put("text1", infosEmplacements[i][1]);
-            element.put("text2", infosEmplacements[i][2]);
+            element.put("text1", e.getRue1());
+            element.put("text2", e.getVille() + " (" + e.getSuperficie() + ")");
             lesEmplacements.add(element);
         }
 
