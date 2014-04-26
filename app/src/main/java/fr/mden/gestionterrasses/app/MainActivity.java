@@ -1,11 +1,14 @@
 package fr.mden.gestionterrasses.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -15,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class MainActivity extends Activity
 {
     // Liste des éléments de l'activité
@@ -23,7 +25,7 @@ public class MainActivity extends Activity
     private Button boutonAjouterEmplacement;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -42,6 +44,41 @@ public class MainActivity extends Activity
                 // On lance l'activité "AjoutEmplacement"
                 Intent ajoutEmplacement = new Intent(MainActivity.this, AjoutEmplacementActivity.class);
                 startActivity(ajoutEmplacement);
+            }
+        });
+
+        // +----------------------------------------------------+
+        // | OPTION DES ELEMENTS DANS LA LISTE DES EMPLACEMENTS |
+        // +----------------------------------------------------+
+
+        this.listeEmplacements.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // On créé la popup
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Sélectionnez une action :");
+
+                // Options sélectionnables
+                CharSequence options[] = new CharSequence[]{"Modifier l'emplacement", "Supprimer l'emplacement"};
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int optionSelectionnee) {
+                        switch (optionSelectionnee)
+                        {
+                            // Modification de l'emplacement
+                            case 0:
+                                break;
+
+                            // Suppression de l'emplacement
+                            case 1:
+                                break;
+                        }
+                    }
+                });
+
+                builder.show();
+                return true;
             }
         });
 
