@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -16,18 +18,36 @@ import java.util.List;
 
 public class MainActivity extends Activity
 {
+    // Liste des éléments de l'activité
+    private ListView listeEmplacements;
+    private Button boutonAjouterEmplacement;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Récupération des élements de l'activité
+        listeEmplacements = (ListView) findViewById(R.id.liste_emplacements);
+        boutonAjouterEmplacement = (Button) findViewById(R.id.bouton_ajouter_emplacement);
+
+        // +---------------------------------+
+        // | BOUTON "Ajouter un emplacement" |
+        // +---------------------------------+
+
+        this.boutonAjouterEmplacement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // On lance l'activité "AjoutEmplacement"
+                Intent ajoutEmplacement = new Intent(MainActivity.this, AjoutEmplacementActivity.class);
+                startActivity(ajoutEmplacement);
+            }
+        });
+
         // +------------------------------------------+
         // | REMPLISSAGE DE LA LISTE DES EMPLACEMENTS |
         // +------------------------------------------+
-
-        // On récupère l'élément ListView de l'activité pour pouvoir travailler avec
-        ListView listeEmplacements = (ListView) findViewById(R.id.liste_emplacements);
 
         // Récupération des données (entrées manuelles pour le moment)
         String[][] infosEmplacements = new String[][]{
@@ -65,6 +85,9 @@ public class MainActivity extends Activity
         listeEmplacements.setAdapter(adapter);
     }
 
+    // +-----------------------------+
+    // | GESTION DE LA BAR D'ACTIONS |
+    // +-----------------------------+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
