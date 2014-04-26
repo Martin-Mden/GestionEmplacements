@@ -15,7 +15,8 @@
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:id="@+id/listView"
+            android:id="@id/liste_emplacements"
+            android:background="@drawable/bordure_liste_emplacements"
             android:layout_weight="0.64" />
 
         <GridLayout

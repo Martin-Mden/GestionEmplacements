@@ -12,5 +12,8 @@
     <item name="action_sauvegarder_modifications"  type="id"/>
     <item name="action_annuler_modifications"  type="id"/>
 
+    <!-- Activité "Main" -->
+    <item name="liste_emplacements" type="id"/>
+
 
 </resources>
