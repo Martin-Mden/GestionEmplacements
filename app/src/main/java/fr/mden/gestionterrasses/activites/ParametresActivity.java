@@ -1,6 +1,8 @@
 package fr.mden.gestionterrasses.activites;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,12 +58,32 @@ public class ParametresActivity extends Activity
 
                 if(parametreSelectionne.equals("vider_liste"))
                 {
-                    // Suppression de tous les éléments de la base de données
-                    EmplacementDAO emplacementDAO = new EmplacementDAO(getApplicationContext());
-                    emplacementDAO.open();
-                    emplacementDAO.viderBaseDeDonnees();
-                    finish();
-                    Toast.makeText(getApplicationContext(), "Tous les emplacements ont été supprimés.", Toast.LENGTH_SHORT).show();
+                    // Demande de confirmation avant application de l'action
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ParametresActivity.this);
+                    builder.setTitle("Demande de confirmation");
+                    builder.setMessage("ATTENTION : Cette opération va supprimer l'ensemble des emplacements entrés dans l'application.\n\n Êtes-vous certain de vouloir ça ?");
+
+                    // NON
+                    builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    // OUI
+                    builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Suppression de tous les éléments de la base de données
+                            EmplacementDAO emplacementDAO = new EmplacementDAO(getApplicationContext());
+                            emplacementDAO.open();
+                            emplacementDAO.viderBaseDeDonnees();
+                            Toast.makeText(getApplicationContext(), "Tous les emplacements ont été supprimés.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    builder.show();
                 }
             }
         });
