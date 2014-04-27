@@ -1,4 +1,4 @@
 GestionTerrassesAndroid
 =======================
 
-Application "Gestion Terrasses" pour les mobiles sous Android.
+Application "Gestion Emplacements" pour les mobiles sous Android.
