@@ -67,7 +67,7 @@ public class EmplacementDAO extends DAOBase
      */
     public void supprimer(int id)
     {
-
+        mDb.execSQL("DELETE FROM " + EMPLACEMENT_TABLE_NAME + " WHERE " + EMPLACEMENT_ID + " = " + id);
     }
 
     /**

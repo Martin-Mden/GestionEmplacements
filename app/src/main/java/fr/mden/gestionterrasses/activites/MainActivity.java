@@ -98,6 +98,12 @@ public class MainActivity extends Activity
 
                             // Suppression de l'emplacement
                             case 1:
+                                int id = Integer.parseInt(((HashMap<String, String>) listeEmplacements.getItemAtPosition(position)).get("id"));
+                                EmplacementDAO emplacementDAO = new EmplacementDAO(MainActivity.this);
+                                emplacementDAO.open();
+                                emplacementDAO.supprimer(id);
+                                refreshListeEmplacements();
+                                Toast.makeText(getApplicationContext(), "Emplacement supprimé.", Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }

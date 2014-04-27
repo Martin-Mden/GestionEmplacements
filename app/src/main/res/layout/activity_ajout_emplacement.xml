@@ -47,7 +47,7 @@
             android:ems="3"
             android:id="@+id/coordX"
             android:maxLength="4"
-            android:nextFocusRight="@+id/coordY"
+            android:nextFocusDown="@+id/coordY"
             android:hint="   X "/>
 
         <TextView
