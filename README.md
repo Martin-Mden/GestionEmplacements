@@ -1,4 +1,5 @@
-GestionTerrassesAndroid
+GestionEmplacements - ANDROID
 =======================
 
-Application "Gestion Emplacements" pour les mobiles sous Android.
+Application mobile permettant le repérage d'emplacements de terrasses.
+Projet fictif à destination de la ville de Pau, réalisé dans le cadre du BTS SIO (Épreuve E4).
