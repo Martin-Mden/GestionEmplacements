@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +29,45 @@ public class AffichageEmplacementActivity extends Activity
         Bundle b = getIntent().getExtras();
         this.idSelectionne = b.getInt("id");
 
-        TextView texte = (TextView) findViewById(R.id.infos_emplacement);
-        texte.setText("ID : " + idSelectionne);
+        // Récupération de l'objet Emplacement depuis la base de données
+        EmplacementDAO emplacementDAO = new EmplacementDAO(AffichageEmplacementActivity.this);
+        emplacementDAO.open();
+        Emplacement emplacement = emplacementDAO.selectionner(idSelectionne);
+
+        // Remplissage des informations dans les champs de l'activité
+        EditText coordX = (EditText) findViewById(R.id.coordX);
+        coordX.setText(String.valueOf(emplacement.getCoordX()));
+
+        EditText coordY = (EditText) findViewById(R.id.coordY);
+        coordY.setText(String.valueOf(emplacement.getCoordY()));
+
+        EditText rue1 = (EditText) findViewById(R.id.rue1);
+        rue1.setText(emplacement.getRue1());
+
+        EditText rue2 = (EditText) findViewById(R.id.rue2);
+        rue2.setText("+ " + emplacement.getRue2());
+
+        EditText ville = (EditText) findViewById(R.id.ville);
+        ville.setText("Ville : " + emplacement.getVille());
+
+        EditText superficie = (EditText) findViewById(R.id.superficie);
+        superficie.setText("Superficie : " + String.valueOf(emplacement.getSuperficie()) + " m²");
+
+        EditText nbPlacesParking = (EditText) findViewById(R.id.nbPlacesParking);
+        int nombre = emplacement.getNbPlacesParking();
+        switch (nombre)
+        {
+            case 0:
+                nbPlacesParking.setText("Aucune place de parking");
+                break;
+
+            case 1:
+                nbPlacesParking.setText("1 place de parking");
+                break;
+
+            default:
+                nbPlacesParking.setText(nombre + " places de parking");
+        }
 
     }
 
