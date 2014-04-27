@@ -1,7 +1,10 @@
 package fr.mden.gestionterrasses.activites;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,21 +101,48 @@ public class AjoutEmplacementActivity extends Activity
 
     public void actionAjouter()
     {
-        Emplacement e = new Emplacement(
-                Integer.parseInt(String.valueOf(coordX.getText())),
-                Integer.parseInt(String.valueOf(coordY.getText())),
-                String.valueOf(rue1.getText()),
-                String.valueOf(rue2.getText()),
-                String.valueOf(ville.getText()),
-                Integer.parseInt(String.valueOf(superficie.getText())),
-                Integer.parseInt(String.valueOf(nbPlacesParking.getText()))
-        );
+        // On vérifie que tous les champs obligatoires ont été remplis
+        boolean erreurFormulaire = false;
+        String messageErreur = "Veuillez renseigner :\n";
+        if((String.valueOf(coordX.getText())).equals("")) { erreurFormulaire = true; messageErreur += "\n - Coordonnée X"; }
+        if((String.valueOf(coordY.getText())).equals("")) { erreurFormulaire = true; messageErreur += "\n - Coordonnée Y"; }
+        if((String.valueOf(rue1.getText())).equals("")) { erreurFormulaire = true; messageErreur += "\n - Nom de la rue"; }
+        if((String.valueOf(ville.getText())).equals("")) { erreurFormulaire = true; messageErreur += "\n - Ville"; }
+        if((String.valueOf(superficie.getText())).equals("")) { erreurFormulaire = true; messageErreur += "\n - Superficie"; }
+        if((String.valueOf(nbPlacesParking.getText())).equals("")) { erreurFormulaire = true; messageErreur += "\n - Nombre de places de parking"; }
 
-        EmplacementDAO emplacementDAO = new EmplacementDAO(getApplicationContext());
-        emplacementDAO.open();
-        emplacementDAO.ajouter(e);
+        if(!erreurFormulaire)
+        {
+            Emplacement e = new Emplacement(
+                    Integer.parseInt(String.valueOf(coordX.getText())),
+                    Integer.parseInt(String.valueOf(coordY.getText())),
+                    String.valueOf(rue1.getText()),
+                    String.valueOf(rue2.getText()),
+                    String.valueOf(ville.getText()),
+                    Integer.parseInt(String.valueOf(superficie.getText())),
+                    Integer.parseInt(String.valueOf(nbPlacesParking.getText()))
+            );
 
-        finish();
-        Toast.makeText(this.getApplicationContext(), "Emplacement ajouté.", Toast.LENGTH_SHORT).show();
+            EmplacementDAO emplacementDAO = new EmplacementDAO(getApplicationContext());
+            emplacementDAO.open();
+            emplacementDAO.ajouter(e);
+
+            finish();
+            Toast.makeText(this.getApplicationContext(), "Emplacement ajouté.", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            // Il y a une erreur dans le formulaire, on l'indique à l'utilisateur
+            AlertDialog.Builder builder = new AlertDialog.Builder(AjoutEmplacementActivity.this);
+            builder.setTitle("Formulaire incorrect");
+            builder.setMessage(messageErreur + "\n");
+            builder.setPositiveButton("J'ai compris", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.show();
+        }
     }
 }
