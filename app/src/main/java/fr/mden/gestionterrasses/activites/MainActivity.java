@@ -86,24 +86,44 @@ public class MainActivity extends Activity
                 builder.setTitle("Sélectionnez une action :");
 
                 // Options sélectionnables
-                CharSequence options[] = new CharSequence[]{"Modifier l'emplacement", "Supprimer l'emplacement"};
+                CharSequence options[] = new CharSequence[]{"Supprimer l'emplacement"};
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int optionSelectionnee) {
                         switch (optionSelectionnee)
                         {
-                            // Modification de l'emplacement
-                            case 0:
-                                break;
-
                             // Suppression de l'emplacement
-                            case 1:
-                                int id = Integer.parseInt(((HashMap<String, String>) listeEmplacements.getItemAtPosition(position)).get("id"));
-                                EmplacementDAO emplacementDAO = new EmplacementDAO(MainActivity.this);
-                                emplacementDAO.open();
-                                emplacementDAO.supprimer(id);
-                                refreshListeEmplacements();
-                                Toast.makeText(getApplicationContext(), "Emplacement supprimé.", Toast.LENGTH_SHORT).show();
+                            case 0:
+                                final int id = Integer.parseInt(((HashMap<String, String>) listeEmplacements.getItemAtPosition(position)).get("id"));
+
+                                // Demande de confirmation avant suppression
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                builder.setTitle("Demande de confirmation");
+                                builder.setMessage("Voulez-vous vraiment supprimer cet emplacement ?");
+
+                                // NON
+                                builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+
+                                // OUI
+                                builder.setPositiveButton("Supprimer", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Suppression de l'emplacement sélectionné
+                                        EmplacementDAO emplacementDAO = new EmplacementDAO(MainActivity.this);
+                                        emplacementDAO.open();
+                                        emplacementDAO.supprimer(id);
+                                        refreshListeEmplacements();
+                                        Toast.makeText(getApplicationContext(), "Emplacement supprimé.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                builder.show();
+
                                 break;
                         }
                     }
