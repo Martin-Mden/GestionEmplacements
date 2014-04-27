@@ -14,7 +14,6 @@ public class Emplacement
     /**
      * Constructeur de la classe Emplacement
      *
-     * @param id
      * @param coordX
      * @param coordY
      * @param rue1
@@ -23,8 +22,7 @@ public class Emplacement
      * @param superficie
      * @param nbPlacesParking
      */
-    public Emplacement(int id, int coordX, int coordY, String rue1, String rue2, String ville, int superficie, int nbPlacesParking) {
-        this.id = id;
+    public Emplacement(int coordX, int coordY, String rue1, String rue2, String ville, int superficie, int nbPlacesParking) {
         this.coordX = coordX;
         this.coordY = coordY;
         this.rue1 = rue1;

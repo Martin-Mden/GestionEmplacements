@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +28,6 @@ public class MainActivity extends Activity
 {
     // Liste des éléments de l'activité
     private ListView listeEmplacements;
-    private Button boutonAjouterEmplacement;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
@@ -36,13 +37,13 @@ public class MainActivity extends Activity
 
         // Récupération des élements de l'activité
         listeEmplacements = (ListView) findViewById(R.id.liste_emplacements);
-        boutonAjouterEmplacement = (Button) findViewById(R.id.bouton_ajouter_emplacement);
+        Button boutonAjouterEmplacement = (Button) findViewById(R.id.bouton_ajouter_emplacement);
 
         // +---------------------------------+
         // | BOUTON "Ajouter un emplacement" |
         // +---------------------------------+
 
-        this.boutonAjouterEmplacement.setOnClickListener(new View.OnClickListener() {
+        boutonAjouterEmplacement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // On lance l'activité "AjoutEmplacement"
@@ -56,11 +57,21 @@ public class MainActivity extends Activity
         // +----------------------------------------------------+
 
         // Clic court : Accès à la fiche de l'emplacement
-        this.listeEmplacements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.listeEmplacements.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 // On affiche la fiche présentant les infos de l'emplacement
                 Intent affichageEmplacement = new Intent(MainActivity.this, AffichageEmplacementActivity.class);
+
+                // Passage de l'ID de l'emplacement cliqué à l'activité d'affichage
+                Bundle b = new Bundle();
+                HashMap<String, String> infosEmplacement = (HashMap<String, String>)listeEmplacements.getItemAtPosition(position);
+                b.putInt("id", Integer.parseInt(infosEmplacement.get("id")));
+                affichageEmplacement.putExtras(b);
+
+                // Lancement de l'activité AffichageEmplacementActivity
                 startActivity(affichageEmplacement);
             }
         });
@@ -68,10 +79,10 @@ public class MainActivity extends Activity
         // Clic long : Accès aux options via une popup
         this.listeEmplacements.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
                 // On créé la popup
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Sélectionnez une action :");
 
                 // Options sélectionnables
@@ -97,41 +108,41 @@ public class MainActivity extends Activity
             }
         });
 
+        refreshListeEmplacements();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        refreshListeEmplacements();
+    }
+
+    private void refreshListeEmplacements()
+    {
         // +------------------------------------------+
         // | REMPLISSAGE DE LA LISTE DES EMPLACEMENTS |
         // +------------------------------------------+
 
         EmplacementDAO emplacementDAO = new EmplacementDAO(this.getApplicationContext());
         emplacementDAO.open();
-        
-        List<Emplacement> listeDesEmplacements = emplacementDAO.tousLesEmplacements();
 
-        // Récupération des données (entrées manuelles pour le moment)
-        /*String[][] infosEmplacements = new String[][]{
-                {"1", "Ligne 1", "Infos 1"},
-                {"2", "Ligne 2", "Infos 2"},
-                {"3", "Ligne 3", "Infos 3"},
-                {"4", "Ligne 4", "Infos 4"},
-                {"5", "Ligne 5", "Infos 5"},
-                {"6", "Ligne 6", "Infos 6"},
-                {"7", "Ligne 7", "Infos 7"},
-                {"8", "Ligne 8", "Infos 8"},
-                {"9", "Ligne 9", "Infos 9"},
-                {"10", "Ligne 10", "Infos 10"},
-                {"11", "Ligne 11", "Infos 11"}};*/
+        List<Emplacement> listeDesEmplacements = emplacementDAO.tousLesEmplacements();
 
         // Liste des associations "Première ligne/seconde ligne
         List<HashMap<String, String>> lesEmplacements = new ArrayList<HashMap<String, String>>();
 
         // Élément en cours de traitement
         HashMap<String, String> element;
+        //HashMap<Integer, HashMap<String, String>> elements;
 
         // Pour chaque emplacement trouvé, on défini l'élément (association des infos) et on l'ajoute à la liste.
         for(Emplacement e : listeDesEmplacements)
         {
-            element = new HashMap<String, String>();
+            element= new HashMap<String, String>();
+            element.put("id", String.valueOf(e.getId()));
             element.put("text1", e.getRue1());
-            element.put("text2", e.getVille() + " (" + e.getSuperficie() + ")");
+            element.put("text2", e.getVille() + " (Superficie : " + e.getSuperficie() + " m²)");
             lesEmplacements.add(element);
         }
 
@@ -140,6 +151,21 @@ public class MainActivity extends Activity
 
         // On lit l'adapter à la liste des emplacements
         listeEmplacements.setAdapter(adapter);
+
+        // On affiche le nombre d'éléments de la liste en haut
+        int nombre = listeEmplacements.getCount();
+        TextView afficheNombreEmplacements = (TextView) findViewById(R.id.nombre_emplacements);
+        switch (nombre)
+        {
+            case 0:
+                afficheNombreEmplacements.setText("Aucun emplacement.");
+                break;
+            case 1:
+                afficheNombreEmplacements.setText("Vous avez entré 1 emplacement.");
+                break;
+            default:
+                afficheNombreEmplacements.setText("Vous avez entré " + nombre + " emplacements.");
+        }
     }
 
     // +-----------------------------+

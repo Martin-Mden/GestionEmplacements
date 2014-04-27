@@ -4,17 +4,65 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import fr.mden.gestionterrasses.app.R;
+import fr.mden.gestionterrasses.metier.Emplacement;
+import fr.mden.gestionterrasses.metier.EmplacementDAO;
 
 
 public class AjoutEmplacementActivity extends Activity
 {
+    // Champs du formulaire
+    EditText coordX, coordY, rue1, rue2, ville, superficie, nbPlacesParking;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_emplacement);
+
+        // Récupération des champs du formulaire
+        coordX = (EditText) findViewById(R.id.coordX);
+        coordY = (EditText) findViewById(R.id.coordY);
+        rue1 = (EditText) findViewById(R.id.rue1);
+        rue2 = (EditText) findViewById(R.id.rue2);
+        ville = (EditText) findViewById(R.id.ville);
+        superficie = (EditText) findViewById(R.id.superficie);
+        nbPlacesParking = (EditText) findViewById(R.id.nbPlacesParking);
+
+        Button ajouter = (Button) findViewById(R.id.bouton_ajouter);
+        ajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionAjouter();
+            }
+        });
+
+        Button annuler = (Button) findViewById(R.id.bouton_annuler);
+        annuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Button vider = (Button) findViewById(R.id.bouton_vider);
+        vider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                coordX.setText("");
+                coordY.setText("");
+                rue1.setText("");
+                rue2.setText("");
+                ville.setText("");
+                superficie.setText("");
+                nbPlacesParking.setText("");
+            }
+        });
     }
 
 
@@ -36,7 +84,7 @@ public class AjoutEmplacementActivity extends Activity
         {
             // Action pour valider l'ajout de l'emplacement
             case R.id.action_valider_ajout:
-                finish();
+                actionAjouter();
                 break;
 
             // Action pour annuler l'ajout de l'emplacement
@@ -46,5 +94,25 @@ public class AjoutEmplacementActivity extends Activity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void actionAjouter()
+    {
+        Emplacement e = new Emplacement(
+                Integer.parseInt(String.valueOf(coordX.getText())),
+                Integer.parseInt(String.valueOf(coordY.getText())),
+                String.valueOf(rue1.getText()),
+                String.valueOf(rue2.getText()),
+                String.valueOf(ville.getText()),
+                Integer.parseInt(String.valueOf(superficie.getText())),
+                Integer.parseInt(String.valueOf(nbPlacesParking.getText()))
+        );
+
+        EmplacementDAO emplacementDAO = new EmplacementDAO(getApplicationContext());
+        emplacementDAO.open();
+        emplacementDAO.ajouter(e);
+
+        finish();
+        Toast.makeText(this.getApplicationContext(), "Emplacement ajouté.", Toast.LENGTH_SHORT).show();
     }
 }

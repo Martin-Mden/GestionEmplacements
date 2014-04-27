@@ -9,6 +9,7 @@
     tools:context="fr.mden.gestionterrasses.activites.AffichageEmplacementActivity">
 
     <TextView
+        android:id="@+id/infos_emplacement"
         android:text="Infos emplacement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

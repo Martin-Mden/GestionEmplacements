@@ -1,7 +1,10 @@
 package fr.mden.gestionterrasses.metier;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.renderscript.Element;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +38,7 @@ public class EmplacementDAO extends DAOBase
 
     public static final String EMPLACEMENT_TABLE_DROP = "DROP TABLE IF EXISTS " + EMPLACEMENT_TABLE_NAME + ";";
 
-    /**
-     * Constructeur de la classe EmplacementDAO
-     * @param pContext
-     */
-    public EmplacementDAO(Context pContext)
-    {
+    public EmplacementDAO(Context pContext) {
         super(pContext);
     }
 
@@ -50,7 +48,17 @@ public class EmplacementDAO extends DAOBase
      */
     public void ajouter(Emplacement e)
     {
+        ContentValues valeurs = new ContentValues();
+        valeurs.put(EMPLACEMENT_COORD_X, e.getCoordX());
+        valeurs.put(EMPLACEMENT_COORD_Y, e.getCoordY());
+        valeurs.put(EMPLACEMENT_RUE_1, e.getRue1());
+        valeurs.put(EMPLACEMENT_RUE_2, e.getRue2());
+        valeurs.put(EMPLACEMENT_VILLE, e.getVille());
+        valeurs.put(EMPLACEMENT_SUPERFICIE, e.getSuperficie());
+        valeurs.put(EMPLACEMENT_NB_PLACES_PARKING, e.getNbPlacesParking());
 
+        // Insertion dans la base de données
+        mDb.insert(EMPLACEMENT_TABLE_NAME, null, valeurs);
     }
 
     /**
@@ -79,9 +87,9 @@ public class EmplacementDAO extends DAOBase
     public Emplacement selectionner(int id)
     {
         Cursor c = mDb.rawQuery("SELECT * FROM " + EMPLACEMENT_TABLE_NAME + " WHERE " + EMPLACEMENT_ID + " = ?", new String[]{String.valueOf(id)});
+        c.moveToNext();
         // Création et remplissage de l'emplacement en fonction des données récupérées
         Emplacement selection = new Emplacement(
-                c.getInt(0), // ID
                 c.getInt(1), // Coordonnée X
                 c.getInt(2), // Coordonnée Y
                 c.getString(3), // Rue 1
@@ -91,6 +99,8 @@ public class EmplacementDAO extends DAOBase
                 c.getInt(7) // Nombre de places de parking
         );
 
+        selection.setId(c.getInt(0));
+
         return selection;
     }
 
@@ -98,11 +108,18 @@ public class EmplacementDAO extends DAOBase
     {
         List<Emplacement> lesEmplacements = new ArrayList<Emplacement>();
         Cursor c = mDb.rawQuery("SELECT " + EMPLACEMENT_ID + " FROM " + EMPLACEMENT_TABLE_NAME, new String[]{});
-        for (int i = 0; i < c.getCount(); i++)
+        while (c.moveToNext())
         {
-            lesEmplacements.add(this.selectionner(c.getInt(i)));
+            lesEmplacements.add(this.selectionner(c.getInt(0)));
         }
+        c.close();
 
         return lesEmplacements;
+    }
+
+    public void viderBaseDeDonnees()
+    {
+        mDb.execSQL(EMPLACEMENT_TABLE_DROP);
+        mDb.execSQL(EMPLACEMENT_TABLE_CREATE);
     }
 }

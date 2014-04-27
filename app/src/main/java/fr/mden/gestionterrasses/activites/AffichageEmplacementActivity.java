@@ -4,17 +4,28 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import fr.mden.gestionterrasses.app.R;
 
 
 public class AffichageEmplacementActivity extends Activity
 {
+    private int idSelectionne;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affichage_emplacement);
+
+        // Récupération de l'ID de l'emplacement sélectionné dans l'activité principale
+        Bundle b = getIntent().getExtras();
+        this.idSelectionne = b.getInt("id");
+
+        TextView texte = (TextView) findViewById(R.id.infos_emplacement);
+        texte.setText("ID : " + idSelectionne);
+
     }
 
     @Override

@@ -47,7 +47,7 @@
             android:ems="3"
             android:id="@+id/coordX"
             android:maxLength="4"
-            android:nextFocusLeft="@+id/coordY"
+            android:nextFocusRight="@+id/coordY"
             android:hint="   X "/>
 
         <TextView
@@ -63,7 +63,7 @@
             android:ems="3"
             android:id="@+id/coordY"
             android:maxLength="4"
-            android:nextFocusForward="@+id/rue1"
+            android:nextFocusDown="@+id/rue1"
             android:hint="   Y "/>
 
         <TextView
@@ -113,7 +113,7 @@
         android:id="@+id/superficie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="numberSigned"
         android:hint="Superficie (en m²)"
         android:layout_marginTop="10sp"
         android:ems="10" />
@@ -122,7 +122,7 @@
         android:id="@+id/nbPlacesParking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="numberSigned"
         android:hint="Nombre de places de parking"
         android:layout_marginTop="10sp"
         android:ems="10" />
